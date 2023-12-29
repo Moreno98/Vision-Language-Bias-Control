@@ -1,0 +1,12 @@
+tqdm
+# torch
+# torchvision
+pandas
+pytorch-lightning
+lmdb
+pytorch-fid
+lpips
+opencv-python
+scikit-image
+matplotlib
+scikit-learn
