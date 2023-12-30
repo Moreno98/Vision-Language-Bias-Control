@@ -114,35 +114,22 @@ class Synthetic_dataset_subset():
                 image_name
             )
         )
-        # image_number = image_name.split(".")[0]
-        # noise = torch.load(
-        #     os.path.join(
-        #         self.noise_path, 
-        #         image_number + ".pt"
-        #     ),
-        #     map_location=torch.device('cpu')
-        # )
-        # semantic_code = torch.load(
-        #     os.path.join(
-        #         self.semantic_code_path, 
-        #         image_number + ".pt"
-        #     ),
-        #     map_location=torch.device('cpu')
-        # )
+        image_number = image_name.split(".")[0]
         noise = torch.load(
             os.path.join(
                 self.noise_path, 
-                "noise_" + image_name + ".pt"
+                image_number + ".pt"
             ),
             map_location=torch.device('cpu')
         )
         semantic_code = torch.load(
             os.path.join(
                 self.semantic_code_path, 
-                "semantic_code_" + image_name + ".pt"
+                image_number + ".pt"
             ),
             map_location=torch.device('cpu')
         )
+        
         if self.transform:
             image = self.transform(image)
         return image, label, noise, semantic_code, image_name
