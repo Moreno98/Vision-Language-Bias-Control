@@ -31,7 +31,7 @@ This code is organized in 3 main scripts:
 - `train_classifier.py`: train a classifier on the original datasets (baseline) or on the augmented datasets (VLBC).
 
 ### Required pre-trained models
-This code requires the following pre-trained models that we make available for download [here](https:/):
+This code requires the following pre-trained models that we make available for download [here](https://drive.google.com/file/d/1dpz3CsIlWUYZWnkf2BWFrHYN0EWU_dl5/view?usp=sharing):
 - DiffAE model trained to edit Age and Skin Color attributes for CelebA-HQ and UTKFace.
 - Pseudo labelers: MobileNetV2 trained on CelebA-HQ and [FairFace](https://github.com/dchen236/FairFace) for sensitive attributes.
 - DiffAE weights from [here](https://github.com/phizaz/diffae).
