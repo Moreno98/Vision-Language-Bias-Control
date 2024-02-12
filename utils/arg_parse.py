@@ -11,9 +11,9 @@ def arg_parse_generate():
     parser.add_argument('--n_images', type=int, help="number of images to generate")
     parser.add_argument('--seed', type=int, default=0, help="seed")
     parser.add_argument('--save_path', type=str, default='generated_dataset', help="path to save generated images")
-    args = parser.parse_args()
-    args.diffusion_timesteps = 1000
-    return args
+    opt = vars(parser.parse_args())
+    opt['diffusion_timesteps'] = 1000
+    return opt
 
 def args_parse_pseudo_labelling():
     parser = argparse.ArgumentParser(description='Commands description', formatter_class=RawTextHelpFormatter)

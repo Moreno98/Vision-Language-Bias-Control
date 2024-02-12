@@ -7,32 +7,32 @@ from torchvision.utils import save_image
 import random
 
 def run():
-    args = arg_parse_generate()
+    opt = arg_parse_generate()
     # set seed and deterministic
-    torch.manual_seed(args.seed)
-    torch.cuda.manual_seed(args.seed)
+    torch.manual_seed(opt['seed'])
+    torch.cuda.manual_seed(opt['seed'])
     torch.backends.cudnn.deterministic = True
-    random.seed(args.seed)
+    random.seed(opt['seed'])
 
     # create save paths
-    save_image_path = os.path.join(args.save_path, "images")
+    save_image_path = os.path.join(opt['save_path'], "images")
     os.makedirs(save_image_path, exist_ok=True)
-    os.makedirs(os.path.join(args.save_path, "noises"), exist_ok=True)
-    os.makedirs(os.path.join(args.save_path, "semantic_codes"), exist_ok=True)
+    os.makedirs(os.path.join(opt['save_path'], "noises"), exist_ok=True)
+    os.makedirs(os.path.join(opt['save_path'], "semantic_codes"), exist_ok=True)
 
     # load model
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     diffae, DDIM_conf = utils.load_diffusion_model(
-        args = args,
+        opt = opt,
         device = device
     )
 
     # generate images
     imge_idx = 0
-    for batch_id in tqdm(range(args.n_images // args.batch_size), desc="Generating images"):
+    for batch_id in tqdm(range(opt['n_images'] // opt['batch_size']), desc="Generating images"):
         # generate images
         original_imgs, semantic_codes, noise_codes = diffae.sample(
-            N = args.batch_size,
+            N = opt['batch_size'],
             device = device
         )
         original_imgs = original_imgs.cpu()
@@ -44,8 +44,8 @@ def run():
                 image,
                 os.path.join(save_image_path, f"{imge_idx}.jpg")
             )
-            torch.save(noise_code, os.path.join(args.save_path, "noises", f"{imge_idx}.pt"))
-            torch.save(semantic_code, os.path.join(args.save_path, "semantic_codes", f"{imge_idx}.pt"))
+            torch.save(noise_code, os.path.join(opt['save_path'], "noises", f"{imge_idx}.pt"))
+            torch.save(semantic_code, os.path.join(opt['save_path'], "semantic_codes", f"{imge_idx}.pt"))
             imge_idx += 1
 
 
