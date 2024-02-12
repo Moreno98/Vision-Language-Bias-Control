@@ -5,11 +5,9 @@
 Official PyTorch implementation of the paper "Improving Fairness using Vision-Language Driven Image Augmentation" accepted at WACV 24. 
 
 If you find this code useful for your research, please [cite](#citation) our paper.
->**Abstract:** Fairness is crucial when training a deep-learning discriminative model, especially in the facial domain. Models tend to correlate specific characteristics (such as age and skin color) with unrelated attributes (downstream tasks), resulting in biases which do not correspond to reality. It is common knowledge that these correlations are present in the data and are then transferred to the models during training. This paper proposes a method to mitigate these correlations to improve fairness. To do so, we learn interpretable and meaningful paths lying in the semantic space of a pre-trained diffusion model (DiffAE)--such paths being supervised by contrastive text dipoles. That is, we learn to edit protected characteristics (age and skin color). These paths are then applied to augment images to improve the fairness of a given dataset. We test the proposed method on CelebA-HQ and UTKFace on several downstream tasks with age and skin color as protected characteristics. As a proxy for fairness, we compute the difference in accuracy with respect to the protected characteristics. Quantitative results show how the augmented images help the model improve the overall accuracy, the aforementioned metric, and the disparity of equal opportunity. Code is available at: https://github. com/Moreno98/Vision-Language-Bias-Control.
+>**Abstract:** Fairness is crucial when training a deep-learning discriminative model, especially in the facial domain. Models tend to correlate specific characteristics (such as age and skin color) with unrelated attributes (downstream tasks), resulting in biases which do not correspond to reality. It is common knowledge that these correlations are present in the data and are then transferred to the models during training. This paper proposes a method to mitigate these correlations to improve fairness. To do so, we learn interpretable and meaningful paths lying in the semantic space of a pre-trained diffusion model (DiffAE)--such paths being supervised by contrastive text dipoles. That is, we learn to edit protected characteristics (age and skin color). These paths are then applied to augment images to improve the fairness of a given dataset. We test the proposed method on CelebA-HQ and UTKFace on several downstream tasks with age and skin color as protected characteristics. As a proxy for fairness, we compute the difference in accuracy with respect to the protected characteristics. Quantitative results show how the augmented images help the model improve the overall accuracy, the aforementioned metric, and the disparity of equal opportunity.
 
-<p align="center">
-<img src="figs/overview2_compressed.pdf" style="width: 70vw"/>
-</p>
+![alt text](figs/Overview.png)
 
 ## Installation
 We recomand to use a virtual environment to install the dependencies. 
@@ -33,7 +31,7 @@ This code is organized in 3 main scripts:
 - `train_classifier.py`: train a classifier on the original datasets (baseline) or on the augmented datasets (VLBC).
 
 ### Required pre-trained models
-This code requires the following pre-trained models that we make available for download [here](https:/):
+This code requires the following pre-trained models that we make available for download [here](https://drive.google.com/file/d/1dpz3CsIlWUYZWnkf2BWFrHYN0EWU_dl5/view?usp=sharing):
 - DiffAE model trained to edit Age and Skin Color attributes for CelebA-HQ and UTKFace.
 - Pseudo labelers: MobileNetV2 trained on CelebA-HQ and [FairFace](https://github.com/dchen236/FairFace) for sensitive attributes.
 - DiffAE weights from [here](https://github.com/phizaz/diffae).
