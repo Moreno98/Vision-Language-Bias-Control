@@ -25,7 +25,7 @@ class Face_Detector:
         #         ...
         #     ]
         # ]
-        bboxes = self.face_detector.detect_from_batch((image*255).unsqueeze(0))[0][0]
+        bboxes = self.face_detector.detect_from_batch(image*255)[0][0]
         if len(bboxes) == 0:
             return self.crop_transform(image)
         else:
