@@ -147,7 +147,7 @@ class Augmentation_module:
                 # face detection
                 # using one image at a time is faster
                 for idx, image in enumerate(images):
-                    images[idx] = self.face_detector.single_image(image.to(self.device))
+                    images[idx] = self.face_detector.single_image(image.unsqueeze(0).to(self.device))
 
             images = images.cpu()
             idx_batch += 1
