@@ -41,11 +41,11 @@ def run():
         # save images
         for image, noise_code, semantic_code in zip(original_imgs, noise_codes, semantic_codes):
             save_image(
-                image,
+                image.clone(),
                 os.path.join(save_image_path, f"{imge_idx}.jpg")
             )
-            torch.save(noise_code, os.path.join(opt['save_path'], "noises", f"{imge_idx}.pt"))
-            torch.save(semantic_code, os.path.join(opt['save_path'], "semantic_codes", f"{imge_idx}.pt"))
+            torch.save(noise_code.clone(), os.path.join(opt['save_path'], "noises", f"{imge_idx}.pt"))
+            torch.save(semantic_code.clone(), os.path.join(opt['save_path'], "semantic_codes", f"{imge_idx}.pt"))
             imge_idx += 1
 
 
